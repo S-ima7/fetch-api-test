@@ -23,8 +23,6 @@
         // GitHubのユーザーAPIエンドポイント
         const url = `https://api.github.com/users/${username}`;
 
-        console.log("=== [DEBUG] Fetching from:", url);
-
         try {
           const response = await fetch(url);
 
