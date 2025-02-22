@@ -27,12 +27,10 @@
 
         try {
           const response = await fetch(url);
-          console.log("=== [DEBUG] Response Status:", response.status);
 
           // ステータスコードが200番台（OK）の場合だけ成功とみなす
           if (response.ok) {
             const data = await response.json();
-            console.log("=== [DEBUG] Full JSON data ===");
             console.log(data);
 
             // 取ってきたデータから必要なものだけをログにだす
@@ -40,12 +38,11 @@
             const userId = data.id || "N/A";
             const userBio = data.bio || "N/A";
 
-            console.log("=== [DEBUG] Filtered Data ===");
             console.log("UserName:", userLogin);
             console.log("ID      :", userId);
             console.log("Bio     :", userBio);
 
-            // ログじゃなくて画面に出す & 4. 見た目を整える
+            // GUI表示用に整形して返す
             return `
 ● ユーザー名: ${userLogin}
 ● ユーザーID: ${userId}
@@ -60,7 +57,6 @@
             throw new Error(errorMsg);
           }
         } catch (error) {
-          console.error("=== [DEBUG] Error Occurred ===", error);
           throw error; // 上位で処理させるため再スロー
         }
       }
